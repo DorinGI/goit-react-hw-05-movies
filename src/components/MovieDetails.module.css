@@ -1,0 +1,40 @@
+.detailsContainer {
+  display: flex;
+  padding: 20px;
+  border: 1px solid #ddd;
+  border-radius: 10px;
+}
+
+.poster {
+  width: 300px;
+  margin-right: 20px;
+}
+
+.movieInfo {
+  flex: 1;
+}
+
+.movieInfo h1 {
+  font-size: 24px;
+  margin-bottom: 10px;
+  color: #000;
+}
+
+.movieInfo p {
+  font-size: 16px;
+  color: #555;
+}
+
+.links {
+  margin-top: 20px;
+}
+
+.links a {
+  margin-right: 10px;
+  text-decoration: none;
+  color: #007bff;
+}
+
+.links a:hover {
+  text-decoration: underline;
+}

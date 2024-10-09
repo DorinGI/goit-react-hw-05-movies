@@ -1,0 +1,22 @@
+.reviewsList {
+  list-style: none;
+  padding: 0;
+}
+
+.reviewItem {
+  margin-bottom: 20px;
+  border-bottom: 1px solid #ddd;
+  padding-bottom: 10px;
+  padding: 0 5% 0 5%;
+}
+
+.reviewItem h3 {
+  margin: 0;
+  font-size: 18px;
+  color: #000;
+}
+
+.reviewItem p {
+  font-size: 14px;
+  color: #555;
+}
