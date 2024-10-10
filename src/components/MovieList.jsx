@@ -1,19 +1,17 @@
 import React from 'react';
-import { Link } from 'react-router-dom';
+import { Link, useLocation } from 'react-router-dom';
 import PropTypes from 'prop-types';
 import styles from './MovieList.module.css';
 
 const MovieList = ({ movies }) => {
-  if (!movies || movies.length === 0) {
-    return <p>No movies available</p>;
-  }
+  const location = useLocation();
 
   return (
     <div className={styles.moviesContainer}>
       <ul className={styles.moviesList}>
         {movies.map(movie => (
           <li key={movie.id} className={styles.movieCard}>
-            <Link to={`/movies/${movie.id}`}>
+            <Link to={`/movies/${movie.id}`} state={{ from: location }}>
               <img
                 src={
                   movie.poster_path
@@ -33,7 +31,12 @@ const MovieList = ({ movies }) => {
 };
 
 MovieList.propTypes = {
-  movies: PropTypes.arrayOf(PropTypes.object),
+  movies: PropTypes.arrayOf(
+    PropTypes.shape({
+      id: PropTypes.number.isRequired,
+      title: PropTypes.string.isRequired,
+    })
+  ).isRequired,
 };
 
 export default MovieList;

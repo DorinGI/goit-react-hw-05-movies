@@ -1,16 +1,25 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { searchMovies } from '../services/movieApi';
 import PropTypes from 'prop-types';
 import MovieList from './MovieList';
+import { useSearchParams } from 'react-router-dom';
 import styles from '../components/Movies.module.css';
 
 const Movies = () => {
-  const [query, setQuery] = useState('');
   const [movies, setMovies] = useState([]);
+  const [searchParams, setSearchParams] = useSearchParams();
+  const query = searchParams.get('query') || '';
+
+  useEffect(() => {
+    if (query) {
+      searchMovies(query).then(setMovies).catch(console.error);
+    }
+  }, [query]);
 
   const handleSubmit = e => {
     e.preventDefault();
-    searchMovies(query).then(setMovies).catch(console.error);
+    if (query.trim() === '') return;
+    setSearchParams({ query });
   };
 
   return (
@@ -19,7 +28,7 @@ const Movies = () => {
         <input
           type="text"
           value={query}
-          onChange={e => setQuery(e.target.value)}
+          onChange={e => setSearchParams({ query: e.target.value })}
           placeholder="Search for movies"
           className={styles.input}
         />
